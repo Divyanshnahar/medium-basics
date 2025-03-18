@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { Quote } from "../components/Quote";
+import { Auth } from "../components/Auth";
 
 export const Signup = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 h-screen">
-      <div className="flex flex-col justify-center items-center px-8">
+      {/* <div className="flex flex-col justify-center items-center px-8">
         <div className="w-full max-w-md">
           <h2 className="text-3xl font-bold mb-2">Create an account</h2>
           <p className="text-gray-500 mb-6">
@@ -46,8 +47,11 @@ export const Signup = () => {
             </button>
           </form>
         </div>
+      </div> */}
+      <div>
+        <Auth type="signup" />
       </div>
-      <div className="bg-gray-100 flex justify-center items-center">
+      <div className="bg-gray-100 flex justify-center items-center invisible md:visible">
         <Quote />
       </div>
     </div>

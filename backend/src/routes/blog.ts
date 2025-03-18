@@ -115,7 +115,7 @@ blogRouter.post('/', async (c) => {
   //---------------------------------------------------------------------------------------
   blogRouter.get('/',async (c) => {
     // const body = await  c.req.json();
-    const id = c.req.query('id') || "";
+    const id = c.req.param('id') || "";
     const prisma = new PrismaClient({
       datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate())
