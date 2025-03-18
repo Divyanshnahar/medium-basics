@@ -32,7 +32,9 @@ userRouter.post('/signup', async (c) => {
       data : {
         username : body.username,
         password : body.password,
-        name : body.name
+        name : body.name,
+
+
       }
       
     })
@@ -52,9 +54,9 @@ userRouter.post('/signup', async (c) => {
   })
   
   //---------------------------------------------------------------------------------------
-  userRouter.post('api/v1/user/signin',async (c) => {
+  userRouter.post('/signin',async (c) => {
     const body = await  c.req.json();
-    const { success } = signinInput.safeParse(body);
+    const { success } = signupInput.safeParse(body);
     if (!success) {
         c.status(411);
         return c.json({
@@ -97,3 +99,6 @@ userRouter.post('/signup', async (c) => {
   }
     })
   
+
+
+    
