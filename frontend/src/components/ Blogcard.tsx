@@ -1,6 +1,6 @@
 interface BlogcardProps {
     authorName: string;
-    authorDescription: string;
+
     title: string;
     content: string;
     publishedDate: string;
