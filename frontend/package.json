@@ -13,6 +13,7 @@
     "@divyanshnahar15/medium-common": "^1.0.0",
     "autoprefixer": "^10.4.21",
     "axios": "^1.8.3",
+    "daisyui": "^5.0.9",
     "postcss": "^8.5.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

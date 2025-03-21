@@ -3,23 +3,26 @@ import { Blogcard } from "../components/ Blogcard"
 import { Appbar } from "../components/Appbar"
 import { useBlog } from "../hooks";
 
+
+
 export const Blogs = () => {
     const {loading , blogs } = useBlog();
-    if(loading){
-        return <div>
-            loading...
-            {/* <span className="loading loading-spinner loading-md"></span> */}
-        </div>
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center min-h-screen bg-gray-900">
+                <div className="spin-loader"></div>
+            </div>
+        );
     }
 
 
     return <div className="min-h-screen bg-gray-900 px-4">
 
         <div>
-        <Appbar />
+        <Appbar authorName="hasToBeChanged" />
        {
             blogs.map(blog =><Blogcard
-            authorName={blog.author.name || ""}
+            authorName={blog.author.name || "Anonymous"}
             title = {blog.title}
             content = {blog.content}
             publishedDate="2021-09-01"
