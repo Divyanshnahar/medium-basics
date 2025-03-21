@@ -45,7 +45,7 @@ export const Blogcard = ({
 
 
 export function Avatar ( {name} : {name : string}){
-  return  <div className="mt-6 pt-6 border-t border-gray-100">
+  return  <div className=" items-centre border-gray-100">
     <div className="flex items-center space-x-4">
         <div className="h-12 w-12 rounded-full bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center text-white font-bold text-xl">
             {name.charAt(0)}

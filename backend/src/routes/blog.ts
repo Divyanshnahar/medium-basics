@@ -2,7 +2,21 @@ import { Hono } from "hono";
 import { PrismaClient } from '@prisma/client/edge'
 import { withAccelerate } from '@prisma/extension-accelerate'
 import { verify } from 'hono/jwt'
+// import z, { string } from 'zod';
 import { createBlogInput,updateBlogInput } from "@divyanshnahar15/medium-common";
+
+// const createBlogInput = z.object({
+//     title: string(),
+//     content: string()
+// })
+
+
+// const updateBlogInput = z.object({
+//     title: string(),
+//     content: string(),
+//     id: string()
+// })
+
 
 export const blogRouter = new Hono<{
     Bindings : {
@@ -12,7 +26,7 @@ export const blogRouter = new Hono<{
     Variables:{
         userId : string
 
-    }
+    }  
 }>();
 
 blogRouter.use('/*', async (c,next)=>{
@@ -47,7 +61,7 @@ blogRouter.post('/', async (c) => {
     if (!success) {
         c.status(411);
         return c.json({
-            message: "Inputs not correct"
+            message: "Inputs not correct safeparse error"
         });
     }
     const authorId = c.get('userId');
@@ -146,10 +160,11 @@ blogRouter.post('/', async (c) => {
       datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate())
 
-    const bulk = await prisma.blog.findMany({
+    const blogs = await prisma.blog.findMany({
         select: {
             title: true,
             content: true,
+            id: true,
             author: {
                 select: {
                     name: true
@@ -158,7 +173,7 @@ blogRouter.post('/', async (c) => {
         }
     })
     return c.json({
-        bulk
+        blogs
     })
 
     })

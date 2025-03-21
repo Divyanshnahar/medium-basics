@@ -1,11 +1,21 @@
 
 import { Blogcard } from "../components/ Blogcard"
 import { Appbar } from "../components/Appbar"
+import { useBlog } from "../hooks";
 
 export const Blogs = () => {
-    return <div className="min-h-screen bg-gray-900 py-10 px-4">
+    const {loading } = useBlog();
+    if(loading){
+        return <div>
+            loading...
+            {/* <span className="loading loading-spinner loading-md"></span> */}
+        </div>
+    }
+
+
+    return <div className="min-h-screen bg-gray-900 px-4">
         <Appbar />
-        <div className="max-w-6xl mx-auto space-y-8">
+        <div className="max-w-6xl mx-auto space-y-8 py-10">
             <Blogcard
                 authorName="Divyansh Nahar"
                 authorDescription="CEO, BLASTprod Inc"
