@@ -13,7 +13,8 @@ interface Blog {
         "name": string; }
 
 }
-export const useBlog = () => {
+
+export const useBlogs = () => {
 
     const [loading , setLoading] = useState(true);
     const [blogs , setBlogs] = useState<Blog[]>([]);
@@ -29,7 +30,7 @@ export const useBlog = () => {
             setLoading(false);
         })
         .catch(error => {
-            console.error("Error fetching blogs:", error);
+            console.error("Error fetching blogs...fuck :", error);
             setLoading(false);
             // Optionally set an error state here if you want to show error messages to users
         });
