@@ -21,7 +21,7 @@ export const Blogs = () => {
         <div>
         <Appbar authorName="hasToBeChanged" />
        {
-            blogs.map(blog =><Blogcard
+            blogs.map(blog => <Blogcard
             id = {blog.id}
             authorName={blog.author.name || "Anonymous"}
             title = {blog.title}

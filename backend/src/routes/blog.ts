@@ -126,56 +126,66 @@ blogRouter.post('/', async (c) => {
 
     }  })
   //---------------------------------------------------------------------------------------
-  blogRouter.get('/:id',async (c) => {
-    // const body = await  c.req.json();
-    const id = c.req.param('id') || "";
+  blogRouter.get('/bulk', async (c) => {
     const prisma = new PrismaClient({
-      datasourceUrl: c.env.DATABASE_URL,
-  }).$extends(withAccelerate())
-  try{
-    const blogs = await prisma.blog.findFirst({
-        where:{
-            id : Number(id)
-        }
-    })
-    return c.json({
-      blogs
-    })
-  }catch(e){
-    c.status(411);
-    console.log(e);
-        return c.json({
-            "msg" : "something unexpected occured"
-        })
-  }   
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate())
 
-  })
-  //---------------------------------------------------------------------------------------
-
-  //pagination is required here
-  blogRouter.get('/bulk',async (c) => {
-
-  
-    const prisma = new PrismaClient({
-      datasourceUrl: c.env.DATABASE_URL,
-  }).$extends(withAccelerate())
-
-    const blogs = await prisma.blog.findMany({
-        select: {
-            title: true,
-            content: true,
-            id: true,
-            author: {
-                select: {
-                    name: true
+    try {
+        const blogs = await prisma.blog.findMany({
+            select: {
+                title: true,
+                content: true,
+                id: true,
+                author: {
+                    select: {
+                        name: true
+                    }
                 }
             }
+        })
+        return c.json({
+            blogs
+        })
+    } catch(e) {
+        c.status(500);
+        console.error(e);
+        return c.json({
+            msg: "Failed to fetch blogs"
+        });
+    }
+  })
+  //---------------------------------------------------------------------------------------
+  blogRouter.get('/:id', async (c) => {
+    const id = c.req.param('id');
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate())
+    
+    try {
+        const blogs = await prisma.blog.findFirst({
+            where: {
+                id: Number(id)
+            }
+        })
+        
+        if (!blogs) {
+            c.status(404);
+            return c.json({
+                "msg": "Blog not found"
+            });
         }
-    })
-    return c.json({
-        blogs
-    })
-
-    })
+        
+        return c.json({
+            blogs
+        })
+    } catch(e) {
+        c.status(411);
+        console.log(e);
+        return c.json({
+            "msg": "something unexpected occurred"
+        })
+    }   
+})
   //---------------------------------------------------------------------------------------
   
