@@ -1,3 +1,4 @@
+import { Appbar } from "../components/Appbar";
 import { FullBlog } from "../components/FullBlog";
 import { useBlog } from "../hooks"
 import { useParams } from "react-router-dom";
@@ -21,6 +22,7 @@ export const Blog = () => {
     }
 
     return <div className="min-h-screen bg-gray-900">
+         <Appbar authorName="hasToBeChanged" />
         <FullBlog 
             id={blog.id}
             title={blog.title}
