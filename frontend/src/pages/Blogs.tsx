@@ -19,7 +19,7 @@ export const Blogs = () => {
     return <div className="min-h-screen bg-gray-900 px-4">
 
         <div>
-        <Appbar authorName="hasToBeChanged" />
+        <Appbar  />
        {
             blogs.map(blog => <Blogcard
             id = {blog.id}

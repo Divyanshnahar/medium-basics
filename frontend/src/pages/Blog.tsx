@@ -25,7 +25,7 @@ export const Blog = () => {
 
     return <div className="min-h-screen bg-gray-900">
 
-         <Appbar authorName="toBeChanged" />
+         <Appbar  />
         <FullBlog 
             id={blog.id}
             title={blog.title}
