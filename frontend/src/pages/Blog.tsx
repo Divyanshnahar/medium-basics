@@ -21,8 +21,11 @@ export const Blog = () => {
         return <div>Blog not found</div>;
     }
 
+
+
     return <div className="min-h-screen bg-gray-900">
-         <Appbar authorName="hasToBeChanged" />
+
+         <Appbar authorName="toBeChanged" />
         <FullBlog 
             id={blog.id}
             title={blog.title}
