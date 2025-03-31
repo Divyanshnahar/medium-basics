@@ -2,9 +2,7 @@ import { Avatar } from "./ Blogcard"
 import { Link } from "react-router-dom"
 
 
-interface AppbarProps {
-    authorName: string;
-}
+
 
 export const Appbar = () => {
 
